@@ -1,0 +1,47 @@
+.glow-text {
+    text-shadow: 0px 0px 10px rgba(0, 170, 255, 0.8), 0px 0px 20px rgba(255, 140, 0, 0.6);
+}
+
+.cyber-button {
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.cyber-button:hover::before {
+    opacity: 1;
+    top: 0;
+    left: 0;
+}
+
+.cyber-button:hover {
+    box-shadow: 0px 0px 15px rgba(173, 127, 255, 0.6);
+}
+
+/* h1, h2, h3, h4 {
+    text-shadow: 0 0 5px rgba(173, 127, 255, 0.8), 
+                 0 0 10px rgba(173, 127, 255, 0.6);
+} */
+
+
+.profile-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+    box-shadow: 0px 0px 15px rgba(173, 127, 255, 0.5);
+    transform: scale(1.05);
+}
