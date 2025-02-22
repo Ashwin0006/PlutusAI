@@ -1,8 +1,15 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Allows cross-origin requests
+from flask_cors import CORS  
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+# Folder for uploading documets!
+UPLOAD_FOLDER = "user_submissions"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True) 
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+user_documents = {}
 
 emp_creds = {
         ("ash@gmail.com", "Ash123"),
@@ -43,6 +50,8 @@ details = {
     }
 }
 
+
+
 @app.route("/checkLogin", methods=["POST", "GET"])
 def checkLogin():
     data = request.json
@@ -76,6 +85,40 @@ def getDetails(email):
     if det:
         return jsonify(det), 200
     return jsonify({"message": "User not found"}), 404
+
+
+@app.route("/uploadDocuments/<email>", methods=["POST"])
+def upload_documents(email):
+    files = request.files.getlist("files")
+
+    if not email:
+        return jsonify({"message": "Email is required in URL"}), 400
+
+    if not files or files[0].filename == "":
+        return jsonify({"message": "No files selected"}), 400
+    
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], email)
+    os.makedirs(user_folder, exist_ok=True)
+
+    uploaded_files = []
+    for file in files:
+        file_path = os.path.join(user_folder, file.filename)
+
+        try:
+            file.save(file_path)
+            doc_id = len(user_documents) + 1 
+            user_documents[doc_id] = {
+                "email": email,
+                "filename": file.filename,
+                "path": file_path,
+                "status": "Pending"
+            }
+            uploaded_files.append({"doc_id": doc_id, "filename": file.filename, "status": "Pending"})
+        except Exception as e:
+            return jsonify({"message": f"Error saving {file.filename}: {str(e)}"}), 500
+
+    return jsonify({"message": "Files uploaded successfully!", "uploaded_files": uploaded_files}), 201
+
 
 
 if __name__ == "__main__":
