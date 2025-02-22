@@ -9,7 +9,6 @@ export default function UserInfo() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 text-gray-900 flex flex-col items-center p-10">
-            {/* Profile Header */}
             <motion.div 
                 initial={{ opacity: 0, y: -20 }} 
                 animate={{ opacity: 1, y: 0 }} 
@@ -28,7 +27,6 @@ export default function UserInfo() {
                 </div>
             </motion.div>
 
-            {/* Profile Information Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 max-w-5xl">
                 <ProfileCard 
                     icon={<Wallet size={40} className="text-blue-500" />} 
@@ -94,7 +92,6 @@ export default function UserInfo() {
     );
 }
 
-// Reusable ProfileCard Component
 const ProfileCard = ({ icon, title, value }) => {
     return (
         <motion.div 
