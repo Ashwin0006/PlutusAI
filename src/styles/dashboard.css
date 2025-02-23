@@ -1,0 +1,41 @@
+.admin-dashboard {
+  padding: 20px;
+}
+
+.file-upload {
+  margin-bottom: 20px;
+}
+
+.file-upload input {
+  margin-right: 10px;
+}
+
+.fraud-insights {
+  margin-top: 20px;
+}
+
+.chart-container {
+  margin-bottom: 40px;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
