@@ -1,2 +1,3 @@
 venv/
 plutus-backend/models/
+node_modules
