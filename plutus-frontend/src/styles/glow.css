@@ -45,3 +45,27 @@
     box-shadow: 0px 0px 15px rgba(173, 127, 255, 0.5);
     transform: scale(1.05);
 }
+
+
+.glow-text {
+    text-shadow: 0px 0px 15px rgba(255, 140, 0, 0.8), 0px 0px 25px rgba(255, 165, 0, 0.6);
+}
+
+.review-status {
+    transition: all 0.3s ease-in-out;
+}
+
+.review-status:hover {
+    transform: scale(1.02);
+}
+
+.text-blue-500.animate-pulse {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+

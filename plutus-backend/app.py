@@ -83,6 +83,7 @@ def signup():
 @app.route("/getDetails/<email>", methods=["GET"])
 def getDetails(email):
     det = details.get(email, None)
+    print("Get Details on :", email)
     if det:
         return jsonify(det), 200
     return jsonify({"message": "User not found"}), 404

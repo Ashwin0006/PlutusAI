@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion"; 
 import { Upload, FileText, UserCircle } from "lucide-react"; 
 import { useState } from "react";
+
 import "../styles/glow.css";
 
 function CustomerHome() {
@@ -55,7 +56,7 @@ function CustomerHome() {
         <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 text-gray-900">
             <header className="flex justify-between items-center p-6 shadow-md bg-gradient-to-br from-blue-600 to-purple-600">
                 <h1 className="text-2xl font-bold tracking-widest text-pink-300">Plutus.AI</h1>
-                <UserCircle size={36} className="text-emerald-300 cursor-pointer hover:text-purple-500 transition-all" onClick={() => navigate(`/userInfo/${user}`)} />
+                <UserCircle size={36} className="text-emerald-300 cursor-pointer hover:text-purple-500 transition-all" onClick={() => navigate(`/userinfo/${user}`)} />
             </header>
 
             <div className="flex flex-col items-center justify-center mt-16">

@@ -1,11 +1,37 @@
-import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
 import { UserCircle, CreditCard, Banknote, ShieldCheck, Wallet } from "lucide-react";
 import "../styles/glow.css"; 
+import { useEffect, useState } from "react";
 
 export default function UserInfo() {
-    const location = useLocation();
-    const userData = location.state || {}; 
+    const { email } = useParams(); // Get email from URL params
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchUserDetails() {
+            try {
+                const res = await fetch(`http://127.0.0.1:5000/getDetails/${email}`);
+                const data = await res.json();
+
+                if (res.ok) {
+                    setUserData(data);
+                } else {
+                    setError(data.message || "User not found");
+                }
+            } catch (err) {
+                setError("Error fetching data");
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchUserDetails();
+    }, [email]);
+
+    if (loading) return <p className="text-center text-lg text-gray-500">🔄 Loading user data...</p>;
+    if (error) return <p className="text-center text-lg text-red-500">⚠️ {error}</p>;
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 text-gray-900 flex flex-col items-center p-10">

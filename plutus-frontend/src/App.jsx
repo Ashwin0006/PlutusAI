@@ -17,7 +17,7 @@ function App() {
         <Route path="/employee/home/:empId" element={<EmployeeHome />} />
         <Route path="/customer/home/:userId" element={<CustomerHome />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/userinfo" element={<UserInfo />} />
+        <Route path="/userinfo/:email" element={<UserInfo />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/review-status/:docId" element={<ReviewStatus />} />
         <Route path="/blockchain-explorer" element={<BlockchainExplorer />} /> 
