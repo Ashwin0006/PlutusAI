@@ -5,7 +5,8 @@ import LoginScreen from './pages/Login';
 import SignUp from './pages/SignUp';
 import UserInfo from './pages/UserInfo';
 import AdminDashboard from './pages/AdminDashboard';
-import ReviewStatus from './pages/ReviewStatus'; // Add this line
+import ReviewStatus from './pages/ReviewStatus'; 
+import BlockchainExplorer from './pages/BlockchainExplorer'; 
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userinfo" element={<UserInfo />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/review-status/:docId" element={<ReviewStatus />} /> {/* Add this line */}
+        <Route path="/review-status/:docId" element={<ReviewStatus />} />
+        <Route path="/blockchain-explorer" element={<BlockchainExplorer />} /> 
+
       </Routes>
     </Router>
   );

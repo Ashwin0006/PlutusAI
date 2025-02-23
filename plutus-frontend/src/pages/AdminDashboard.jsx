@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import FileUpload from "../components/FileUpload";
 import FraudInsights from "../components/FraudInsights";
 import "../styles/dashboard.css";
@@ -26,6 +27,13 @@ const AdminDashboard = () => {
         Admin Dashboard
       </h1>
 
+      <Link
+        to="/blockchain-explorer"
+        className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all mb-6"
+      >
+        View Blockchain
+      </Link>
+      
       {/* File Upload Component */}
       <div className="dashboard-section bg-white p-6 rounded-xl shadow-lg border border-purple-300 hover:shadow-purple-500 transition-all">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">📂 Upload CSV File</h2>

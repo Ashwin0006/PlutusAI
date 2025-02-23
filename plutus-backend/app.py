@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  
 import os
 from document_verification.verification_orchestrator import DocumentVerifier
+from blockchain.mock_blockchain import blockchain
 app = Flask(__name__)
 CORS(app)
 
@@ -135,6 +136,36 @@ def get_verification(doc_id):
     verifier = DocumentVerifier()
     results = verifier.verify_document(doc['path'])
     return jsonify(results)
+
+# Add a new policy to the blockchain
+@app.route("/add-policy", methods=["POST"])
+def add_policy():
+    data = request.json
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    # Add the policy to the blockchain
+    blockchain.add_block(data)
+    return jsonify({
+        "message": "Policy added to blockchain",
+        "block": blockchain.chain[-1].__dict__
+    }), 201
+
+# Get the entire blockchain
+@app.route("/get-blockchain", methods=["GET"])
+def get_blockchain():
+    return jsonify({
+        "chain": [block.__dict__ for block in blockchain.chain],
+        "length": len(blockchain.chain)
+    }), 200
+
+# Validate the blockchain
+@app.route("/validate-blockchain", methods=["GET"])
+def validate_blockchain():
+    is_valid = blockchain.is_chain_valid()
+    return jsonify({
+        "is_valid": is_valid
+    }), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
