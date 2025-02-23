@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS  
 import os
-
+from document_verification.verification_orchestrator import DocumentVerifier
 app = Flask(__name__)
 CORS(app)
 
@@ -113,13 +113,28 @@ def upload_documents(email):
                 "path": file_path,
                 "status": "Pending"
             }
-            uploaded_files.append({"doc_id": doc_id, "filename": file.filename, "status": "Pending"})
+            uploaded_files.append({
+                "doc_id": doc_id,  # Include document ID
+                "filename": file.filename,
+                "status": "Pending"
+            })
         except Exception as e:
             return jsonify({"message": f"Error saving {file.filename}: {str(e)}"}), 500
 
-    return jsonify({"message": "Files uploaded successfully!", "uploaded_files": uploaded_files}), 201
+    return jsonify({
+        "message": "Files uploaded successfully!",
+        "uploaded_files": uploaded_files
+    }), 201
 
-
+@app.route("/verify-document/<doc_id>", methods=["GET"])
+def get_verification(doc_id):
+    doc = user_documents.get(int(doc_id))
+    if not doc:
+        return jsonify({"error": "Document not found"}), 404
+    
+    verifier = DocumentVerifier()
+    results = verifier.verify_document(doc['path'])
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(debug=True)

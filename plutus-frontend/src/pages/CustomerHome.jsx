@@ -81,7 +81,7 @@ function CustomerHome() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         className="cyber-button flex flex-col items-center p-5 bg-white shadow-md border border-blue-300 rounded-xl hover:shadow-blue-400"
-                        onClick={() => navigate(`/reviewStatus/${user}`)}
+                        onClick={() => navigate(`/review-status/${user}`)} // Update this line
                     >
                         <FileText size={40} className="text-blue-500" />
                         <span className="mt-2 font-medium text-gray-700">Review Status</span>
