@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Folder for uploading documets!
+# Folder for uploading documents!
 UPLOAD_FOLDER = "user_submissions"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True) 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
