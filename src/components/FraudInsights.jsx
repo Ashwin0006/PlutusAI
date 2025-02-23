@@ -29,7 +29,7 @@ const FraudInsights = ({ data }) => {
       </h2>
 
       {/* Bar Chart: Fraud Category Distribution */}
-      <div className="chart-container bg-white p-6 rounded-xl shadow-lg border border-purple-300 hover:shadow-purple-500 transition-all">
+      <div className="chart-container bg-white p-6 rounded-xl shadow-lg border border-purple-300 hover:shadow-purple-500 transition-all flex justify-center items-center flex-col">
         <h3 className="text-xl font-semibold text-gray-700 mb-4">📊 Fraud Category Distribution</h3>
         <CustomBarChart
           data={Object.entries(fraudCategoryCounts).map(([category, count]) => ({
@@ -42,7 +42,7 @@ const FraudInsights = ({ data }) => {
       </div>
 
       {/* Pie Chart: Policy Status Distribution */}
-      <div className="chart-container bg-white p-6 rounded-xl shadow-lg border border-blue-300 hover:shadow-blue-500 transition-all mt-8">
+      <div className="chart-container bg-white p-6 rounded-xl shadow-lg border border-blue-300 hover:shadow-blue-500 transition-all mt-8 flex justify-center items-center flex-col">
         <h3 className="text-xl font-semibold text-gray-700 mb-4">📈 Policy Status Distribution</h3>
         <CustomPieChart
           data={Object.entries(policyStatusCounts).map(([status, count]) => ({
